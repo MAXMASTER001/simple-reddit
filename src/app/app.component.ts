@@ -1,3 +1,4 @@
+import { Article } from './article.model';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  articles: Article[];
+  constructor() {
+    this.articles = [
+      new Article('Angular', 'http://www.angular.io',10),
+      new Article('React', 'http://www.react.io',9),
+      new Article('Vue', 'http://www.vue.io',8),
+    ];
+  }
+  addArticle(title: HTMLInputElement, link: HTMLInputElement): boolean {
+   this.articles.push(new Article(title.value,link.value));
+    console.log(`Adding article title: ${title.value} and link: ${link.value}`);
+    return false;
+  }
 }
